@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZepterApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5e9276b91b45d3073e29be06d1e481d1bc6f306")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0b874604cfafdaad092969f2290572761d55a23e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZepterApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZepterApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

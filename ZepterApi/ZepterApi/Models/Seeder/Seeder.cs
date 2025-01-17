@@ -24,6 +24,7 @@ public class Seeder
         {
             Name = $"Sklep {i}"
         });
+
         var orders = new List<Order>();
         foreach (var store in stores)
         {
@@ -42,7 +43,6 @@ public class Seeder
             }
         }
 
-        _context.Stores.AddRange(stores);
         _context.Orders.AddRange(orders);
         await _context.SaveChangesAsync();
     }
