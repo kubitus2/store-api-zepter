@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "ContainingType": "ZepterApi.Controllers.OrdersController",
+    "Method": "GetFilteredOrders",
+    "RelativePath": "api/Orders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

@@ -18,10 +18,23 @@ public class StoreService : IStoreService
 
     public async Task<ICollection<OrderDto>> GetDataThree()
     {
-        var orders = await _context.Orders.FromSql($"SELECT o.Id AS OrderId, o.StoreId, a.City, a.Street, a.PostalCode, (SELECT SUM(ol.NetPrice * ol.Quantity) FROM OrderLines ol WHERE ol.OrderId = o.Id) AS TotalNetValue FROM Orders o JOIN Addresses a ON o.AddressId = a.Id WHERE o.StoreId % 2 = 0 AND a.City LIKE \"%w%\";")
+        var query = @"SELECT o.Id AS OrderId, 
+                o.StoreId, 
+                a.City, 
+                a.Street, 
+                a.PostalCode, 
+                (SELECT SUM(ol.NetPrice * ol.Quantity) 
+                    FROM OrderLines ol 
+                    WHERE ol.OrderId = o.Id) AS TotalNetValue 
+            FROM Orders o 
+            JOIN Addresses a ON o.AddressId = a.Id  
+            WHERE o.StoreId % 2 = 0 AND a.City LIKE ""%w%"";";
+
+        var orders = await _context.Database
+            .SqlQuery<OrderDto>($"SELECT * FROM Orders")
             .ToListAsync();
 
-        return (ICollection<OrderDto>)orders;
+        return orders;
     }
 
     public Task GetPaymentSummary()

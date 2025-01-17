@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 
 using ZepterApi.Models.DB;
 using ZepterApi.Models.Seeder;
+using ZepterApi.Services;
+using ZepterApi.wwwroot.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,7 @@ builder.Services.AddDbContext<OrdersDbContext>(opt =>
 });
 
 builder.Services.AddScoped<Seeder>();
+builder.Services.AddScoped<IStoreService, StoreService>();
 
 var app = builder.Build();
 

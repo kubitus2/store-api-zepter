@@ -7,5 +7,5 @@ public class OrderLine
     public decimal NetPrice { get; set; }
     public decimal GrossPrice { get; set; }
     public int Quantity { get; set; }
-    public Order Order { get; set; }
+    public int OrderId { get; set; }
 }

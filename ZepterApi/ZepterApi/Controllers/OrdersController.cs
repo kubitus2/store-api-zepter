@@ -15,4 +15,11 @@ public class OrdersController : ControllerBase
         _logger = logger;
         _storeService = service;
     }
+
+    [HttpGet]
+    public IActionResult GetFilteredOrders()
+    {
+        var result = _storeService.GetDataThree();
+        return Ok(result);
+    }
 }
