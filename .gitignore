@@ -4,3 +4,14 @@
 
 /ZepterApi/.vs/ZepterApi
 /ZepterApi/ZepterApi/bin/Debug/net8.0
+
+### DotnetCore ###
+# .NET Core build folders
+bin/
+obj/
+
+# Common node modules locations
+/node_modules
+/wwwroot/node_modules
+
+# End of https://www.toptal.com/developers/gitignore/api/dotnetcore
