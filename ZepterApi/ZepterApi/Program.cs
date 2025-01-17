@@ -1,7 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+
+using ZepterApi.Models.DB;
+using ZepterApi.Models.Seeder;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<OrdersDbContext>(opt =>
+{
+    opt.UseSqlite(builder.Configuration.GetConnectionString("DbConnectionString"));
+});
+
+builder.Services.AddScoped<Seeder>();
 
 var app = builder.Build();
 
@@ -23,5 +34,25 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    try
+    {
+        var context = services.GetRequiredService<OrdersDbContext>();
+        var seeder = services.GetRequiredService<Seeder>();
+
+        // Automatyczna migracja i seedowanie
+        await context.Database.MigrateAsync();
+        await seeder.Seed();
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while seeding the database.");
+    }
+}
 
 app.Run();
